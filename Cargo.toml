@@ -1,0 +1,17 @@
+[package]
+name = "depree"
+version = "0.1.0"
+authors = ["Dan Aloni <alonid@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+structopt = "0.3"
+regex = "1"
+lazy_static = "1"
+derive-error = "0"
+unidiff = "0.3.3"
+im = "15"
+git2 = "0.13"
+
+[build-dependencies]
+vergen = "3"
