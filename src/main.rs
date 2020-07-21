@@ -308,7 +308,7 @@ fn verify_rebase_interactive(script_path: &PathBuf) -> Result<(), Error> {
     }
 
     lazy_static! {
-        static ref RE: Regex = Regex::new("^ *pick ([^ ]+)").unwrap();
+        static ref RE: Regex = Regex::new("^ *(pick|reword|squash|fixup) ([^ ]+)").unwrap();
     }
 
     let repo_path = &script_path_str[..script_path_str.len() - suffix.len()];
@@ -321,7 +321,7 @@ fn verify_rebase_interactive(script_path: &PathBuf) -> Result<(), Error> {
     let mut commits = vec![];
     for (line_nr, line) in std::io::BufReader::new(std::fs::File::open(script_path_str)?).lines().enumerate() {
         if let Some(p) = RE.captures(&line?) {
-            if let Some(commit_hash) = p.get(1) {
+            if let Some(commit_hash) = p.get(2) {
                 let xgithash = String::from(commit_hash.as_str());
                 let obj = repo.revparse_single(&xgithash)?;
                 let tree = obj.peel_to_tree()?;
