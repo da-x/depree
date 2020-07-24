@@ -308,7 +308,7 @@ fn verify_rebase_interactive(script_path: &PathBuf) -> Result<(), Error> {
     }
 
     lazy_static! {
-        static ref RE: Regex = Regex::new("^ *(pick|reword|squash|fixup) ([^ ]+)").unwrap();
+        static ref RE: Regex = Regex::new("^ *(pick|reword|squash|fixup|edit) ([^ ]+)").unwrap();
     }
 
     let repo_path = &script_path_str[..script_path_str.len() - suffix.len()];
